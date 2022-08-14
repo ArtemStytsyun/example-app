@@ -1,53 +1,38 @@
 import './bootstrap';
-
-// var myModal = document.getElementById('exampleModalLong')
-// var myInput = document.getElementById('exampleModalLong')
-
-// myModal.addEventListener('shown.bs.modal', function () {
-//   myInput.focus()
-// })
-
-// var myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-//     keyboard: false,
-//     fuck: 1
-// })
-console.log(1);
-// window.$ = require('jquery');
-
 $.ajaxSetup({
 headers: {
     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
 }
 });
 
-$(document).on('click', '.edit', function(event) {
+
+
+
+
+//edit post
+$(document).on('click', '#editPost', function(event) {
 
     event.preventDefault(); 
     event.stopImmediatePropagation();
     if(!event.isDefaultPrevented()){
         event.returnValue = false;
     }
-    console.log(2)
-    //Запрашиваем актуальные данные о посте 
+
+    //Запрашиваем актуальные данные 
     $.ajax({
         cache: false,
         type: 'POST',
         url: event.target.form.action,
         success: function(data) {
-
             //обрабатываем полученные данные и вставляем в модульное окно
             let data_1 = JSON.parse(data)
-  
-
 
             $('#title').val(data_1['title'])
             $('#content').val(data_1['content'])
             $('#image').val(data_1['image'])
-            console.log(data_1['category'])
-            $("#category option[value='"+ data_1['category'] +"']").attr("selected", "selected");
-            // $('#category[value'+ data_1['category']+']').attr('selected','selected').on('change');
+            // $("#category option[value='"+ data_1['category'] +"']").attr("selected", "selected");
             $('#editCategory').val(data_1['category'])
-            // $('#category').change()
+
             if(data_1['is_published']==1){
                 $('#is_published').prop('checked', true);
             }
@@ -60,8 +45,7 @@ $(document).on('click', '.edit', function(event) {
                     e.returnValue = false;
                 }
                 let modal = $('#updateModal')
-                console.log(modal.serialize())
-                // $('#title').val(data_1['title'])
+
                 $.ajax({
                     cache: false,
                     type: 'patch',
@@ -79,6 +63,50 @@ $(document).on('click', '.edit', function(event) {
     })
 })
 
+//edit categories
+$(document).on('click', '#editCategory', function(event) {
+
+    event.preventDefault(); 
+    event.stopImmediatePropagation();
+    if(!event.isDefaultPrevented()){
+        event.returnValue = false;
+    }
+
+    //Запрашиваем актуальные данные 
+    $.ajax({
+        cache: false,
+        type: 'POST',
+        url: event.target.form.action,
+        success: function(data) {
+
+            //обрабатываем полученные данные и вставляем в модульное окно
+            let data_1 = JSON.parse(data)
+            $('#title').val(data_1['title'])
+
+            //Только после того, как данные были получены вешааем обработчик событий
+            $(document).on('click', '#updateCategory', function(e) {
+                e.preventDefault(); 
+                e.stopImmediatePropagation();
+                if(!e.isDefaultPrevented()){
+                    e.returnValue = false;
+                }
+                let modal = $('#updateModal')
+                console.log(modal.serialize())
+                // $('#title').val(data_1['title'])
+                $.ajax({
+                    cache: false,
+                    type: 'patch',
+                    // dataType: 'application/json; charset=utf-8',
+                    url: 'categories/'+ data_1['id'] +'/update', //собираем запрос через одно место, надо придумать шо тут
+                    data: modal.serialize(),
+                    success: function(success){
+                    }
+                })
+                document.location.reload(true);
+            })    
+        }
+    })
+})
 
 $(document).on('click', '.delete', function(event) {
     
@@ -131,3 +159,4 @@ $(document).on('click', '.delete', function(event) {
         }
     })
 })
+

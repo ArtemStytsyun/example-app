@@ -45,7 +45,7 @@ class CategoriesController extends Controller
             'title' => 'string|nullable',
         ]);
 
-        $post->update($data);
+        $category->update($data);
 
         return json_encode($category);//Данные можно и не отсылать
     }

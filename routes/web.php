@@ -33,15 +33,15 @@ Route::post('/posts/{post}/destroy', "PostsController@destroy")->name('post.dest
 
 
 //Categories
-Route::get('/Categories', "CategoriesController@index")->name('category.index'); 
+Route::get('/сategories', "CategoriesController@index")->name('category.index'); 
 
-Route::get('/Categories/create', "CategoriesController@create")->name('category.create');
-Route::post('/Categories', "CategoriesController@store")->name('category.store');
+Route::get('/сategories/create', "CategoriesController@create")->name('category.create');
+Route::post('/сategories', "CategoriesController@store")->name('category.store');
 
-Route::post('/Categories/{category}/edit', "CategoriesController@edit")->name('category.edit');
-Route::patch('/Categories/{category}/update', "CategoriesController@update")->name('category.update');
+Route::post('/сategories/{category}/edit', "CategoriesController@edit")->name('category.edit');
+Route::patch('/categories/{category}/update', "CategoriesController@update")->name('category.update');
 
-Route::post('/Categories/{category}/delete', "CategoriesController@delete")->name('category.delete');
-Route::post('/Categories/{category}/destroy', "CategoriesController@destroy")->name('category.destroy');
+Route::post('/сategories/{category}/delete', "CategoriesController@delete")->name('category.delete');
+Route::post('/сategories/{category}/destroy', "CategoriesController@destroy")->name('category.destroy');
 
 

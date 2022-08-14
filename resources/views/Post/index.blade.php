@@ -29,13 +29,13 @@
                 <td class="row"> 
                     <!-- Button trigger modal -->
                     <form action="{{route('post.edit', $post->id)}}" method="POST" class="col">
-                      <button type="submit"  class="btn btn-dark edit" data-bs-toggle="modal" data-bs-target="#editModal">
+                      <button type="submit"  class="btn btn-dark" id="editPost" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit
                       </button>
                     </form>   
 
                     <form action="{{route('post.delete', $post->id)}}" method="POST" class="col">
-                      <button type="submit"  class="btn btn-dark delete" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                      <button type="submit"  class="btn btn-dark" id="deletePost" data-bs-toggle="modal" data-bs-target="#deleteModal">
                           Delete
                       </button>
                     </form>   

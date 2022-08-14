@@ -18,13 +18,13 @@
                 <td class="row"> 
                   <!-- Button trigger modal -->
                   <form action="{{route('category.edit', $category->id)}}" method="category" class="col">
-                    <button type="submit"  class="btn btn-dark edit" data-bs-toggle="modal" data-bs-target="#editModal">
+                    <button type="submit" class="btn btn-dark" id="editCategory" if="edit" data-bs-toggle="modal" data-bs-target="#editModal">
                         Edit
                     </button>
                   </form>   
 
-                  <form action="{{route('category.delete', $category->id)}}" method="category" class="col">
-                    <button type="submit"  class="btn btn-dark delete" data-bs-toggle="modal" data-bs-target="#deleteModal">
+                  <form action="{{route('category.delete', $category->id)}}" method="post" class="col">
+                    <button type="submit"  class="btn btn-dark" id='deleteCategory' data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete
                     </button>
                   </form>   
@@ -60,7 +60,7 @@
   <!-- EditModal -->
   <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <form action="" method="post" class="modal-content" id="updateModal">
+      <form action="" method="patch" class="modal-content" id="updateModal">
         <div class="modal-header">
           <h5 class="modal-title" id="exampleModalLabel">edit category with id</h5>
           <h5 class="modal-title" id="exampleModalLabelId"></h5>
@@ -74,44 +74,11 @@
                 <input type="text" class="form-control" id="title" name="title" value="">
               </div>
             </div>
-            
-            <div class="input-group mb-3">
-              <label for="content" class="col-sm-2 col-form-label input-group-text">Content</label>
-              <div class="col-sm-10">
-                <textarea class="form-control" id="content" name="content">
-
-                </textarea>
-              </div>
-            </div>
-
-            <div class="input-group mb-3">
-              <label for="image" class="col-sm-2 col-form-label input-group-text">Image</label>
-              <div class="col-sm-10">
-                <input type="text" class="form-control" id="image" name="image" value="">
-              </div>
-            </div>
-
-            <div class="input-group mb-3">
-              <label class=" col-sm-2 input-group-text " for="editCategory" >Category</label>
-              <select class="form-select" id="editCategory" >
-                <option value="1">1</option>
-                @foreach($categories as $category)
-                  <option value="{{$category->title}}"> {{$category->title}} </option>
-                @endforeach
-              </select>
-            </div>
-
-            <div class="form-check">
-              <input class="form-check-input " type="checkbox" id="is_published" name="is_published">
-              <label class="form-check-label" for="is_published">
-                published
-              </label>
-            </div>
 
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-success update" data-bs-dismiss="modal">Save changes</button>
+          <button type="submit" class="btn btn-success" id="updateCategory" data-bs-dismiss="modal">Save changes</button>
         </div>
       </form>
     </div>
