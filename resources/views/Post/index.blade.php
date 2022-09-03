@@ -48,6 +48,8 @@
     <tbody>
 </table>
 
+<div>{{$posts->links()}}</div>
+
 <a class="btn btn-dark" href="{{route('post.create')}}">Create</a>
 
 <!-- DeleteModal -->

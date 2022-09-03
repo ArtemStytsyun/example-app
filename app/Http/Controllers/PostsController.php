@@ -2,17 +2,44 @@
 
 namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePostRequest;
+use App\Http\Requests\FilterRequest;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
+use App\Http\Filters\PostFilter;
+
 use Illuminate\Support\Str;
 
 class PostsController extends BaseController
 {
-    public function index(){
-        $posts = Post::all();
+    public function index(FilterRequest $request){
+        $data = $request->validated();
+        $posts = Post::paginate(10);
         $categories = Category::all();
+        $filter = app()->make(PostFilter::class,['queryParams'=>array_filter($data)]);
+        
+        $posts = Post::filter($filter)->paginate(10);
+        
+        
+        
+        
+        
+        // $query = Post::query();
+        // if(isset($data['category_id'])){
+        //     $query->where('category_id', $data['category_id']);
+        // }
+        // if(isset($data['title'])){
+        //     //оператор like делает поиск по набору букв
+        //     $query->where('title', 'like', "%{$data['title']}%");
+        // }
+        // if(isset($data['content'])){
+        //     //оператор like делает поиск по набору букв
+        //     $query->where('content', 'like', "%{$data['content']}%");
+        // }
+        
+        // $posts = $query->get();
+        // dd($posts);
         //Возврааем страницу и переменную
         return view('Post/index', compact('posts','categories'));
     }
