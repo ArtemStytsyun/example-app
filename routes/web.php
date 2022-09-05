@@ -12,36 +12,44 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', 'IndexController')->name('index');
 
-Route::get('/', 'indexController@index')->name('index');
+Route::group(['namespace' => 'admin'], function(){
+    Route::get('/admin', 'AdminController')->name('admin');
+
+    Route::group(['namespace' => 'Post', 'prefix' => 'admin'], function(){
+        //Список
+        Route::get('/posts', "IndexController")->name('admin.post.index'); 
+        //Просмотр
+        Route::get('/posts/{post}', "ShowController")->name('admin.post.show');
+        //Создание
+        Route::get('/posts/create', "CreateController")->name('admin.post.create');
+        Route::post('/posts/store', "StoreController")->name('admin.post.store');//!!!!!!!!!!!!!!!
+        //Редактирование
+        Route::post('/posts/{post}/edit', "EditController")->name('admin.post.edit');
+        Route::patch('/posts/{post}/update', "UpdateController")->name('admin.post.update');
+        //Удаление
+        Route::post('/posts/{post}/delete', "DeleteController")->name('admin.post.delete');
+        Route::delete('/posts/{post}/destroy', "DestroyController")->name('admin.post.destroy'); //!!!!!!!!!!!!!!!
+    });
+
+    Route::group(['namespace' => 'Category', 'prefix' => 'admin'], function(){
+        //Список
+        Route::get('/сategories', "IndexController")->name('admin.category.index'); 
+        //Создание
+        Route::get('/сategories/create', "CreateController")->name('admin.category.create');
+        Route::post('/сategories', "StoreController")->name('admin.category.store');
+        //Редактирование
+        Route::post('/сategories/{category}/edit', "EditController")->name('admin.category.edit');
+        Route::patch('/categories/{category}/update', "UpdateController")->name('admin.category.update');
+        //Удаление
+        Route::post('/сategories/{category}/delete', "DeleteController")->name('admin.category.delete');
+        Route::delete('/сategories/{category}/destroy', "DestroyController")->name('admin.category.destroy');
+    });
+
+});
 
 
-//Posts
-Route::get('/posts', "PostsController@index")->name('post.index'); 
-
-Route::get('/posts/create', "PostsController@create")->name('post.create');
-Route::post('/posts', "PostsController@store")->name('post.store');
-
-Route::get('/posts/{post}', "PostsController@show")->name('post.show');
-
-Route::post('/posts/{post}/edit', "PostsController@edit")->name('post.edit');
-Route::patch('/posts/{post}/update', "PostsController@update")->name('post.update');
-
-Route::post('/posts/{post}/delete', "PostsController@delete")->name('post.delete');
-Route::post('/posts/{post}/destroy', "PostsController@destroy")->name('post.destroy');
 
 
-
-//Categories
-Route::get('/сategories', "CategoriesController@index")->name('category.index'); 
-
-Route::get('/сategories/create', "CategoriesController@create")->name('category.create');
-Route::post('/сategories', "CategoriesController@store")->name('category.store');
-
-Route::post('/сategories/{category}/edit', "CategoriesController@edit")->name('category.edit');
-Route::patch('/categories/{category}/update', "CategoriesController@update")->name('category.update');
-
-Route::post('/сategories/{category}/delete', "CategoriesController@delete")->name('category.delete');
-Route::post('/сategories/{category}/destroy', "CategoriesController@destroy")->name('category.destroy');
-
-
+    

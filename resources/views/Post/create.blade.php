@@ -1,6 +1,6 @@
 @extends('layouts.main')
 @section('content')
-<form  action="{{route('post.store')}}" method="post">
+<form  action="{{route('admin.post.store')}}" method="post">
     @csrf
     <div class="input-group mb-3">
         <label for="title" class="col-sm-2 input-group-text">title</label>

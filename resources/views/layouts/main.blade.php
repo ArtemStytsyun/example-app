@@ -23,10 +23,10 @@
                         <a class="nav-link active" aria-current="page" href="{{route('index')}}">Home</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{{route('post.index')}}">Posts</a>
+                        <a class="nav-link" href="{{route('admin.post.index')}}">Posts</a>
                       </li>
                       <li class="nav-item">
-                        <a class="nav-link" href="{{route('category.index')}}">Categories</a>
+                        <a class="nav-link" href="{{route('admin.category.index')}}">Categories</a>
                       </li>
                       <li class="nav-item">
                         <a class="nav-link" href="#">Tags</a>

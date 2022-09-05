@@ -11,7 +11,7 @@
     
         <div class="post__paragraph"> 
             <a href="/posts/{{ $post->id}}edit" class="btn btn-dark">Edit</a>
-            <a href="{{route('post.show', $post->id)}}" class="btn btn-dark">Delete</a>
+            <a href="{{route('admin.post.show', $post->id)}}" class="btn btn-dark">Delete</a>
         </div>
 
 

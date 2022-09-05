@@ -28,19 +28,19 @@
                 <td class="">{{ $post->category->title}}</td>
                 <td class="row"> 
                     <!-- Button trigger modal -->
-                    <form action="{{route('post.edit', $post->id)}}" method="POST" class="col">
+                    <form action="{{route('admin.post.edit', $post->id)}}" method="POST" class="col">
                       <button type="submit"  class="btn btn-dark" id="editPost" data-bs-toggle="modal" data-bs-target="#editModal">
                           Edit
                       </button>
                     </form>   
 
-                    <form action="{{route('post.delete', $post->id)}}" method="POST" class="col">
+                    <form action="{{route('admin.post.delete', $post->id)}}" method="POST" class="col">
                       <button type="submit"  class="btn btn-dark" id="deletePost" data-bs-toggle="modal" data-bs-target="#deleteModal">
                           Delete
                       </button>
                     </form>   
                 </td>
-                <td class=""> <a href="{{route('post.show', $post->id)}}" class="btn btn-dark">Post</a></td>
+                <td class=""> <a href="{{route('admin.post.show', $post->id)}}" class="btn btn-dark">Post</a></td>
 
                 
             </tr>
@@ -50,7 +50,7 @@
 
 <div>{{$posts->links()}}</div>
 
-<a class="btn btn-dark" href="{{route('post.create')}}">Create</a>
+<a class="btn btn-dark" href="{{route('admin.post.create')}}">Create</a>
 
 <!-- DeleteModal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">

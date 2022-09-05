@@ -17,13 +17,13 @@
                 <td class="">{{ $category->title}}</td>
                 <td class="row"> 
                   <!-- Button trigger modal -->
-                  <form action="{{route('category.edit', $category->id)}}" method="category" class="col">
+                  <form action="{{route('admin.category.edit', $category->id)}}" method="category" class="col">
                     <button type="submit" class="btn btn-dark" id="editCategory" if="edit" data-bs-toggle="modal" data-bs-target="#editModal">
                         Edit
                     </button>
                   </form>   
 
-                  <form action="{{route('category.delete', $category->id)}}" method="post" class="col">
+                  <form action="{{route('admin.category.delete', $category->id)}}" method="post" class="col">
                     <button type="submit"  class="btn btn-dark" id='deleteCategory' data-bs-toggle="modal" data-bs-target="#deleteModal">
                         Delete
                     </button>
@@ -34,7 +34,7 @@
     <tbody>
 </table>
 
-<a class="btn btn-dark" href="{{route('category.create')}}">Create</a>
+<a class="btn btn-dark" href="{{route('admin.category.create')}}">Create</a>
 
 <!-- DeleteModal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
